@@ -1504,3 +1504,197 @@ a { color: var(--text); text-decoration: none; }
 @media (max-width: 1024px) {
   .hero__ring { width: 340px; height: 340px; }
 }
+
+/* ==========================================================================
+   gradient system II — ticker, phone light-rings, spotlights, extended aura
+   ========================================================================== */
+
+/* --- legal ticker strip --- */
+.ticker {
+  position: relative;
+  max-width: 1072px;
+  margin: -28px auto 56px;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, transparent, rgba(150, 150, 165, 0.07) 50%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+[data-theme="dark"] .ticker {
+  background: linear-gradient(90deg, transparent, rgba(200, 200, 215, 0.05) 50%, transparent);
+}
+
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 30s linear infinite;
+}
+.ticker__group {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  padding: 14px 19px;
+}
+.ticker__group span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: linear-gradient(90deg, var(--text-2) 0%, var(--faint) 55%, var(--text-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.ticker__group i {
+  width: 5px; height: 5px;
+  rotate: 45deg;
+  background: linear-gradient(135deg, var(--text), var(--faint));
+  opacity: 0.55;
+}
+
+@keyframes ticker-scroll { to { transform: translateX(-50%); } }
+
+/* --- extended aurora: blobs further down the page --- */
+.aurora { height: 2600px; }
+.aurora__blob--4 { width: 480px; height: 480px; top: 1480px; right: 6%; background: radial-gradient(circle, var(--blob2), transparent 70%); animation-delay: -5s; }
+.aurora__blob--5 { width: 540px; height: 540px; top: 2080px; left: -6%; background: radial-gradient(circle, var(--blob1), transparent 70%); animation-delay: -21s; }
+
+/* --- traveling light ring around the phone frames --- */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.phone { position: relative; }
+.phone::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50px;
+  padding: 2px;
+  background: conic-gradient(from var(--angle),
+    transparent 0deg,
+    rgba(200, 200, 214, 0.9) 30deg,
+    transparent 85deg,
+    transparent 190deg,
+    rgba(160, 160, 180, 0.6) 220deg,
+    transparent 285deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: angle-spin 7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes angle-spin { to { --angle: 360deg; } }
+
+[data-theme="dark"] .phone::before {
+  background: conic-gradient(from var(--angle),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.85) 30deg,
+    transparent 85deg,
+    transparent 190deg,
+    rgba(190, 190, 205, 0.55) 220deg,
+    transparent 285deg);
+}
+
+/* --- cursor-tracking spotlight on cards --- */
+.explore-card::after,
+.support-card::after,
+.step::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(120, 120, 140, 0.13), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.explore-card:hover::after,
+.support-card:hover::after,
+.step:hover::after { opacity: 1; }
+[data-theme="dark"] .explore-card::after,
+[data-theme="dark"] .support-card::after,
+[data-theme="dark"] .step::after {
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.07), transparent 70%);
+}
+
+/* --- animated gradient on the primary button --- */
+.btn--primary {
+  background: linear-gradient(110deg, #26262b 0%, #0b0b0d 25%, #35353c 50%, #0b0b0d 75%, #26262b 100%);
+  background-size: 200% 100%;
+  animation: sheen 7s ease-in-out infinite;
+}
+[data-theme="dark"] .btn--primary {
+  background: linear-gradient(110deg, #ffffff 0%, #cfcfd6 25%, #ffffff 50%, #cfcfd6 75%, #ffffff 100%);
+  background-size: 200% 100%;
+}
+
+/* --- gradient text on card CTAs --- */
+.support-card__cta,
+.explore-card__cta {
+  background: linear-gradient(90deg, var(--text) 0%, var(--faint) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* --- topbar nav gradient underline --- */
+.topbar__nav a { position: relative; }
+.topbar__nav a::after {
+  content: "";
+  position: absolute;
+  left: 13px; right: 13px; bottom: 2px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--text), transparent);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+.topbar__nav a:hover::after { transform: scaleX(1); }
+
+/* --- sidebar zero-tolerance box: gradient ring --- */
+.notice--boxed { position: relative; border-color: transparent; }
+.notice--boxed::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--border-strong) 0%, #b9b9c1 35%, var(--border-strong) 60%, #cfcfd6 85%, var(--border-strong) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  pointer-events: none;
+}
+[data-theme="dark"] .notice--boxed::before {
+  background: linear-gradient(135deg, #3a3a42 0%, #6e6e78 35%, #4a4a54 60%, #7d7d88 85%, #3a3a42 100%);
+}
+
+/* --- FAQ hover light sweep --- */
+.faq__item summary { position: relative; overflow: hidden; }
+.faq__item summary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(140, 140, 158, 0.1) 50%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+  pointer-events: none;
+}
+.faq__item summary:hover::before { transform: translateX(100%); }
+[data-theme="dark"] .faq__item summary::before {
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.05) 50%, transparent 80%);
+}
+
+/* --- enforcement ring: slow pan --- */
+.notice--emphasis::before {
+  background-size: 200% 100%;
+  animation: sheen 9s linear infinite;
+}

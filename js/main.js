@@ -82,6 +82,9 @@
     }
 
     if (toTop) toTop.classList.toggle("is-visible", doc.scrollTop > 600);
+
+    const aurora = $(".aurora");
+    if (aurora) aurora.style.transform = `translateY(${(doc.scrollTop * -0.05).toFixed(1)}px)`;
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
@@ -201,6 +204,17 @@
     $$(".sidenav__link", sidebar).forEach((a) =>
       a.addEventListener("click", closeSidebar)
     );
+  }
+
+  /* ---------- cursor spotlight on cards ---------- */
+  if (window.matchMedia("(pointer: fine)").matches) {
+    $$(".explore-card, .support-card, .step").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${(e.clientX - rect.left).toFixed(0)}px`);
+        card.style.setProperty("--my", `${(e.clientY - rect.top).toFixed(0)}px`);
+      });
+    });
   }
 
   /* ---------- hero phone parallax (desktop pointers only) ---------- */
