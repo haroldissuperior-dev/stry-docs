@@ -145,6 +145,8 @@ a { color: var(--text); text-decoration: none; }
 .brand__logo {
   width: 30px; height: 30px;
   border-radius: 8px;
+  /* the logo is white artwork on transparency — back it with the brand black */
+  background: #0a0a0a;
 }
 
 .brand__name {
@@ -216,6 +218,7 @@ a { color: var(--text); text-decoration: none; }
   width: 88px; height: 88px;
   border-radius: 22px;
   margin: 0 auto 32px;
+  background: linear-gradient(180deg, #1c1c1e 0%, #0a0a0a 100%);
   box-shadow: var(--shadow-md);
 }
 
@@ -391,8 +394,9 @@ a { color: var(--text); text-decoration: none; }
   font-size: 14.5px;
   line-height: 1.65;
 }
-.notice strong { display: block; margin-bottom: 6px; font-weight: 600; }
+.notice > strong { display: block; margin-bottom: 6px; font-weight: 600; }
 .notice p { margin: 0; color: var(--text-2); max-width: none; }
+.notice p strong { color: var(--text); }
 
 .notice--boxed {
   margin: 0;
@@ -411,6 +415,7 @@ a { color: var(--text); text-decoration: none; }
   box-shadow: var(--shadow-md);
 }
 .notice--emphasis strong { color: #ffffff; }
+.notice--emphasis p strong { color: #ffffff; font-weight: 600; }
 .notice--emphasis p { color: #c8c8cd; }
 .notice--emphasis a { color: #ffffff; text-decoration-color: rgba(255, 255, 255, 0.4); }
 .notice--emphasis a:hover { text-decoration-color: #ffffff; }
@@ -542,6 +547,7 @@ a { color: var(--text); text-decoration: none; }
   width: 48px; height: 48px;
   border-radius: 12px;
   margin-bottom: 14px;
+  background: #0a0a0a;
 }
 
 .footer__brand p { font-size: 14px; color: var(--muted); margin: 0; }
