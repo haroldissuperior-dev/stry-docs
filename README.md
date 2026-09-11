@@ -5,7 +5,9 @@ The official documentation site for **stry**, a Discord bot.
 ![stack](https://img.shields.io/badge/stack-HTML%20%2B%20CSS%20%2B%20JS-111111) ![deploy](https://img.shields.io/badge/deploy-Vercel-555555) ![license](https://img.shields.io/badge/license-MIT-888888)
 
 A fully static, zero-dependency documentation site — light monochrome theme
-(black / white / grey gradients), Inter typography, mobile-first responsive layout.
+(black / white / grey gradients), Inter typography, mobile-first responsive layout,
+with a toggleable dark mode (persisted in `localStorage`, defaults to the system
+preference, animated with a circular reveal via the View Transitions API).
 Deploys to Vercel with **zero configuration**.
 
 ---

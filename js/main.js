@@ -9,6 +9,58 @@
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- theme toggle ---------- */
+  const root = document.documentElement;
+  const themeToggle = $("#themeToggle");
+  const metaTheme = $("#metaTheme");
+
+  const applyTheme = (t) => {
+    root.dataset.theme = t;
+    try { localStorage.setItem("stry-theme", t); } catch (e) {}
+    if (metaTheme) metaTheme.setAttribute("content", t === "dark" ? "#0a0a0c" : "#ffffff");
+    if (themeToggle) themeToggle.setAttribute("aria-pressed", String(t === "dark"));
+  };
+  applyTheme(root.dataset.theme === "dark" ? "dark" : "light");
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", (e) => {
+      const next = root.dataset.theme === "dark" ? "light" : "dark";
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // circular reveal from the toggle (View Transitions API)
+      if (document.startViewTransition && !reduceMotion) {
+        const x = e.clientX || window.innerWidth - 40;
+        const y = e.clientY || 32;
+        const radius = Math.hypot(
+          Math.max(x, window.innerWidth - x),
+          Math.max(y, window.innerHeight - y)
+        );
+        const transition = document.startViewTransition(() => applyTheme(next));
+        transition.ready.then(() => {
+          document.documentElement.animate(
+            {
+              clipPath: [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${radius}px at ${x}px ${y}px)`,
+              ],
+            },
+            {
+              duration: 480,
+              easing: "cubic-bezier(0.3, 0.7, 0.3, 1)",
+              pseudoElement: "::view-transition-new(root)",
+            }
+          );
+        });
+        return;
+      }
+
+      // cross-fade fallback
+      root.classList.add("theming");
+      applyTheme(next);
+      setTimeout(() => root.classList.remove("theming"), 450);
+    });
+  }
+
   /* ---------- scroll progress + smart topbar + back-to-top ---------- */
   const progress = $("#progress");
   const header = $(".topbar");
@@ -185,7 +237,7 @@
       font-weight: 500;
       font-size: 14px;
       color: var(--text);
-      background: #ffffff;
+      background: var(--bg);
       border: 1px solid var(--border-strong);
       border-radius: 10px;
       padding: 10px 16px;
