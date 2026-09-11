@@ -110,6 +110,29 @@
     );
   }
 
+  /* ---------- hero phone parallax (desktop pointers only) ---------- */
+  const hero = $(".hero");
+  const parallaxLayers = $$(".phone-parallax");
+  if (
+    hero &&
+    parallaxLayers.length &&
+    window.matchMedia("(pointer: fine)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    hero.addEventListener("mousemove", (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      parallaxLayers.forEach((layer) => {
+        const depth = parseFloat(layer.dataset.depth || "10");
+        layer.style.transform = `translate(${(x * depth).toFixed(1)}px, ${(y * depth).toFixed(1)}px)`;
+      });
+    });
+    hero.addEventListener("mouseleave", () => {
+      parallaxLayers.forEach((layer) => (layer.style.transform = ""));
+    });
+  }
+
   /* ---------- drawer toggle styles (injected) ---------- */
   const style = document.createElement("style");
   style.textContent = `

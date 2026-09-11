@@ -18,6 +18,7 @@
 <body>
 
   <div class="page-wash" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
 
   <!-- ============ TOP BAR ============ -->
   <header class="topbar">
@@ -49,18 +50,87 @@
   <main id="top">
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="hero__inner reveal">
-        <img src="assets/logo.png" alt="stry" class="hero__logo" />
-        <h1 class="hero__title">stry Documentation</h1>
-        <p class="hero__subtitle">
-          Official documentation for stry, a Discord bot. Find setup instructions,
-          answers to common questions, and the terms that govern use of the bot.
-        </p>
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="#introduction">Get Started</a>
-          <a class="btn btn--ghost" href="#terms">Terms of Service</a>
+      <div class="hero__inner container">
+        <div class="hero__copy reveal">
+          <span class="hero__eyebrow">
+            <img src="assets/logo.png" alt="" class="hero__eyebrow-logo" />
+            Official documentation
+          </span>
+          <h1 class="hero__title">Everything about stry,<br /><span class="hero__title-grad">documented.</span></h1>
+          <p class="hero__subtitle">
+            Setup instructions, answers to common questions, and the terms that govern
+            use of the bot — the single source of truth for stry.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#getting-started">Get Started</a>
+            <a class="btn btn--ghost" href="#terms">Terms of Service</a>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="hero__glow"></div>
+          <div class="phone-parallax phone-parallax--back" data-depth="6">
+            <div class="phone phone--back">
+              <div class="phone__screen phone__screen--dark">
+                <span class="phone__island"></span>
+                <img src="assets/logo.png" alt="" class="phone__wordmark" />
+              </div>
+            </div>
+          </div>
+          <div class="phone-parallax phone-parallax--front" data-depth="14">
+            <div class="phone phone--front">
+              <div class="phone__screen phone__screen--light">
+                <span class="phone__island"></span>
+                <div class="mini-top">
+                  <span class="mini-top__logo"></span>
+                  <span class="mini-bar" style="width: 54px;"></span>
+                  <span class="mini-bar mini-bar--pull" style="width: 32px;"></span>
+                </div>
+                <div class="mini-body">
+                  <div class="mini-side">
+                    <span class="mini-bar" style="width: 72%;"></span>
+                    <span class="mini-bar" style="width: 88%;"></span>
+                    <span class="mini-bar" style="width: 60%;"></span>
+                    <span class="mini-bar" style="width: 80%;"></span>
+                    <span class="mini-bar" style="width: 52%;"></span>
+                  </div>
+                  <div class="mini-main">
+                    <span class="mini-bar mini-bar--title" style="width: 64%;"></span>
+                    <span class="mini-bar" style="width: 100%;"></span>
+                    <span class="mini-bar" style="width: 92%;"></span>
+                    <span class="mini-bar" style="width: 96%;"></span>
+                    <span class="mini-bar mini-bar--card"></span>
+                    <span class="mini-bar" style="width: 84%;"></span>
+                  </div>
+                </div>
+                <div class="mini-nav">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero__floor"></div>
         </div>
       </div>
+    </section>
+
+    <!-- ============ EXPLORE ============ -->
+    <section class="explore container reveal">
+      <a class="explore-card" href="#introduction">
+        <h3>Introduction</h3>
+        <p>What stry is and how this documentation is organized.</p>
+        <span class="explore-card__cta">Read →</span>
+      </a>
+      <a class="explore-card" href="#getting-started">
+        <h3>Getting Started</h3>
+        <p>Add the bot to a server and get the setup right the first time.</p>
+        <span class="explore-card__cta">Read →</span>
+      </a>
+      <a class="explore-card" href="#terms">
+        <h3>Terms of Service</h3>
+        <p>The rules that apply to every server using stry.</p>
+        <span class="explore-card__cta">Read →</span>
+      </a>
     </section>
 
     <!-- ============ DOCS SHELL ============ -->
