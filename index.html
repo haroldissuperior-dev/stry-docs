@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>stry — Documentation</title>
+  <meta name="description" content="Official documentation for stry — the all-in-one Discord bot. Moderation, leveling, utilities and more. Free forever." />
+  <meta name="theme-color" content="#06050a" />
+  <meta property="og:title" content="stry — Documentation" />
+  <meta property="og:description" content="The all-in-one Discord bot your server deserves. Moderation, leveling, utilities and more." />
+  <meta property="og:image" content="assets/logo.png" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ambient background -->
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora__blob aurora__blob--violet"></span>
+    <span class="aurora__blob aurora__blob--cyan"></span>
+    <span class="aurora__blob aurora__blob--magenta"></span>
+  </div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <div id="progress" aria-hidden="true"></div>
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="#home" class="brand">
+        <img src="assets/logo.png" alt="stry logo" class="brand__logo" />
+        <span class="brand__name">stry<span class="brand__dot">.</span>docs</span>
+      </a>
+
+      <nav class="topbar__nav" id="topnav">
+        <a href="#introduction">Introduction</a>
+        <a href="#getting-started">Getting Started</a>
+        <a href="#commands">Commands</a>
+        <a href="#terms">Terms</a>
+        <a href="#support">Support</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <a class="btn btn--ghost btn--sm" href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.029ZM8.02 15.331c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/></svg>
+          Support
+        </a>
+        <a class="btn btn--primary btn--sm" href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands" target="_blank" rel="noopener">Add to Discord</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__card reveal">
+        <div class="hero__logo-wrap">
+          <img src="assets/logo.png" alt="stry" class="hero__logo" />
+        </div>
+        <h1 class="hero__title">Power up your <span class="text-gradient">Discord server</span></h1>
+        <p class="hero__subtitle">
+          stry is an all-in-one Discord bot delivering <strong>moderation</strong>, <strong>leveling</strong>,
+          <strong>utilities</strong> and <strong>fun</strong> — blazing fast, reliable, and free forever.
+        </p>
+        <div class="hero__badges">
+          <span class="chip"><span class="chip__dot chip__dot--green"></span>99.9% uptime</span>
+          <span class="chip">⚡ 3&thinsp;ms average latency</span>
+          <span class="chip">🛡️ 150+ commands</span>
+          <span class="chip">💜 Free forever</span>
+        </div>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.029ZM8.02 15.331c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/></svg>
+            Add to Discord
+          </a>
+          <a class="btn btn--ghost btn--lg" href="#introduction">Read the Docs ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DOCS SHELL ============ -->
+    <div class="docs container">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="search" placeholder="Search docs… ( / )" autocomplete="off" />
+        </div>
+
+        <nav class="sidenav" id="sidenav">
+          <div class="sidenav__group">
+            <span class="sidenav__label">Basics</span>
+            <a href="#introduction" class="sidenav__link"><span class="sidenav__icon">✦</span>Introduction</a>
+            <a href="#getting-started" class="sidenav__link"><span class="sidenav__icon">🚀</span>Getting Started</a>
+            <a href="#faq" class="sidenav__link"><span class="sidenav__icon">❔</span>FAQ</a>
+          </div>
+          <div class="sidenav__group">
+            <span class="sidenav__label">Reference</span>
+            <a href="#commands" class="sidenav__link"><span class="sidenav__icon">⌘</span>Commands</a>
+            <a href="#configuration" class="sidenav__link"><span class="sidenav__icon">⚙</span>Configuration</a>
+            <a href="#permissions" class="sidenav__link"><span class="sidenav__icon">🛡</span>Permissions</a>
+          </div>
+          <div class="sidenav__group">
+            <span class="sidenav__label">Legal</span>
+            <a href="#terms" class="sidenav__link"><span class="sidenav__icon">§</span>Terms of Service</a>
+            <a href="#privacy" class="sidenav__link"><span class="sidenav__icon">🔒</span>Privacy Policy</a>
+            <a href="#support" class="sidenav__link"><span class="sidenav__icon">💬</span>Support</a>
+          </div>
+        </nav>
+
+        <div class="sidebar__foot">
+          <div class="notice notice--danger notice--compact">
+            <strong>Zero-tolerance policy.</strong>
+            <p>Abusing or manipulating stry results in <strong>permanent loss of access</strong>. <a href="#terms">Read the Terms →</a></p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="content" id="content">
+
+        <!-- ======== INTRODUCTION ======== -->
+        <section class="doc" id="introduction" data-section>
+          <span class="doc__overline">Basics</span>
+          <h2 class="doc__title">Introduction</h2>
+          <p class="doc__lead">
+            Welcome to the official <span class="text-gradient">stry</span> documentation. Everything you need to
+            set up, configure and get the most out of stry lives here.
+          </p>
+
+          <div class="notice notice--warning reveal">
+            <strong>⚠ Important — read before use.</strong>
+            <p>
+              stry is provided free of charge and <strong>the developers are not liable for any abuse, misuse or damage
+              caused through use of the bot</strong>. Any attempt to manipulate, exploit or abuse stry will result in
+              <strong>permanent removal of access</strong>, with no appeal. Full details in the
+              <a href="#terms">Terms of Service</a>.
+            </p>
+          </div>
+
+          <h3>What is stry?</h3>
+          <p>
+            stry is a modern, all-in-one Discord bot built for communities of every size — from small friend groups to
+            massive public servers. It combines the essential tools every server needs into one fast, reliable bot, so
+            you can ditch the bot bloat and keep your member list clean.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-card reveal">
+              <div class="feature-card__icon feature-card__icon--violet">🛡️</div>
+              <h4>Moderation</h4>
+              <p>Bans, timeouts, warnings, auto-mod filters, raid protection and full mod-logs — your server, locked down.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-card__icon feature-card__icon--cyan">📈</div>
+              <h4>Levels &amp; XP</h4>
+              <p>Reward activity with a fully configurable leveling system, rank cards and automatic role rewards.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-card__icon feature-card__icon--magenta">🧰</div>
+              <h4>Utilities</h4>
+              <p>Server info, polls, reminders, custom embeds, role menus and dozens of everyday tools.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-card__icon feature-card__icon--violet">🎮</div>
+              <h4>Fun &amp; Games</h4>
+              <p>Keep chat alive with games, memes, economy and interactive commands your members will love.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-card__icon feature-card__icon--cyan">📝</div>
+              <h4>Logging</h4>
+              <p>Detailed audit logs for messages, joins, leaves, role changes and moderation actions.</p>
+            </div>
+            <div class="feature-card reveal">
+              <div class="feature-card__icon feature-card__icon--magenta">⚡</div>
+              <h4>Always On</h4>
+              <p>24/7 hosting with 99.9% uptime and millisecond command responses, even at scale.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======== GETTING STARTED ======== -->
+        <section class="doc" id="getting-started" data-section>
+          <span class="doc__overline">Basics</span>
+          <h2 class="doc__title">Getting Started</h2>
+          <p class="doc__lead">From zero to a fully moderated server in under two minutes.</p>
+
+          <div class="steps">
+            <div class="step reveal">
+              <div class="step__number">1</div>
+              <div>
+                <h4>Invite stry</h4>
+                <p>Click <em>Add to Discord</em> anywhere on this page, pick your server, and approve the permission prompt. You need the <strong>Manage Server</strong> permission to invite bots.</p>
+              </div>
+            </div>
+            <div class="step reveal">
+              <div class="step__number">2</div>
+              <div>
+                <h4>Verify permissions</h4>
+                <p>Make sure stry's role is <strong>above</strong> the roles it needs to manage (drag it in Server Settings → Roles), and that it can view/send in your channels.</p>
+              </div>
+            </div>
+            <div class="step reveal">
+              <div class="step__number">3</div>
+              <div>
+                <h4>Run the setup command</h4>
+                <p>Run the command below in any channel stry can see. It walks you through moderation, leveling and logging setup.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-block reveal">
+            <div class="code-block__header">
+              <span class="code-block__lang">example</span>
+              <button class="code-block__copy" data-copy>Copy</button>
+            </div>
+<pre><code>/setup</code></pre>
+          </div>
+
+          <div class="notice notice--info">
+            <strong>💡 Tip</strong>
+            <p>Try <code>/help</code> at any time to see every command stry offers, grouped by category.</p>
+          </div>
+        </section>
+
+        <!-- ======== COMMANDS ======== -->
+        <section class="doc" id="commands" data-section>
+          <span class="doc__overline">Reference</span>
+          <h2 class="doc__title">Commands</h2>
+          <p class="doc__lead">
+            stry uses Discord <strong>slash commands</strong>. Type <code>/</code> in any channel to browse them all —
+            or search the reference below.
+          </p>
+
+          <div class="filter-row" id="filterRow">
+            <button class="filter-chip is-active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="moderation">Moderation</button>
+            <button class="filter-chip" data-filter="utility">Utility</button>
+            <button class="filter-chip" data-filter="levels">Levels</button>
+            <button class="filter-chip" data-filter="fun">Fun</button>
+          </div>
+
+          <p class="no-results" id="noResults" hidden>No commands found. Try a different search.</p>
+
+          <h3 class="cmd-group" data-group="moderation">🛡️ Moderation</h3>
+          <div class="cmd-list">
+            <div class="cmd reveal" data-search="ban ban member remove moderator" data-category="moderation">
+              <code class="cmd__name">/ban <span>user · reason · delete_days</span></code>
+              <span class="cmd__desc">Permanently ban a member and optionally wipe their recent messages.</span>
+              <span class="badge badge--red">Ban Members</span>
+            </div>
+            <div class="cmd reveal" data-search="timeout mute member temporarily" data-category="moderation">
+              <code class="cmd__name">/timeout <span>user · duration · reason</span></code>
+              <span class="cmd__desc">Temporarily mute a member — from 60 seconds to 28 days.</span>
+              <span class="badge badge--red">Moderate Members</span>
+            </div>
+            <div class="cmd reveal" data-search="kick remove member server" data-category="moderation">
+              <code class="cmd__name">/kick <span>user · reason</span></code>
+              <span class="cmd__desc">Remove a member from the server. They can rejoin with a new invite.</span>
+              <span class="badge badge--red">Kick Members</span>
+            </div>
+            <div class="cmd reveal" data-search="warn warning strike infraction" data-category="moderation">
+              <code class="cmd__name">/warn <span>user · reason</span></code>
+              <span class="cmd__desc">Issue a tracked warning. Automate escalations at warning thresholds.</span>
+              <span class="badge badge--amber">Manage Messages</span>
+            </div>
+            <div class="cmd reveal" data-search="purge clear delete bulk messages clean" data-category="moderation">
+              <code class="cmd__name">/purge <span>amount · user? · matches?</span></code>
+              <span class="cmd__desc">Bulk delete up to 100 messages, optionally filtered by user or keyword.</span>
+              <span class="badge badge--amber">Manage Messages</span>
+            </div>
+            <div class="cmd reveal" data-search="slowmode rate limit channel" data-category="moderation">
+              <code class="cmd__name">/slowmode <span>channel · seconds</span></code>
+              <span class="cmd__desc">Set a per-channel send cooldown to slow down spam bursts.</span>
+              <span class="badge badge--amber">Manage Channels</span>
+            </div>
+            <div class="cmd reveal" data-search="lock unlock channel raid" data-category="moderation">
+              <code class="cmd__name">/lock <span>channel · reason</span></code>
+              <span class="cmd__desc">Instantly lock a channel (or the whole server during a raid).</span>
+              <span class="badge badge--amber">Manage Channels</span>
+            </div>
+            <div class="cmd reveal" data-search="case history modlog infractions record" data-category="moderation">
+              <code class="cmd__name">/case <span>view · id | list · user</span></code>
+              <span class="cmd__desc">Inspect the moderation history of any case or member.</span>
+              <span class="badge badge--amber">Moderate Members</span>
+            </div>
+          </div>
+
+          <h3 class="cmd-group" data-group="utility">🧰 Utility</h3>
+          <div class="cmd-list">
+            <div class="cmd reveal" data-search="help menu list commands" data-category="utility">
+              <code class="cmd__name">/help <span>command?</span></code>
+              <span class="cmd__desc">Browse every command, or get detailed usage for a specific one.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="ping latency uptime status" data-category="utility">
+              <code class="cmd__name">/ping</code>
+              <span class="cmd__desc">Check stry's websocket latency and uptime.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="serverinfo stats members guild info" data-category="utility">
+              <code class="cmd__name">/serverinfo</code>
+              <span class="cmd__desc">Detailed stats about the current server — members, boosts, channels, roles.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="userinfo whois avatar banner user" data-category="utility">
+              <code class="cmd__name">/userinfo <span>user?</span></code>
+              <span class="cmd__desc">Whois any member — join date, roles, badges and more.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="poll vote create question" data-category="utility">
+              <code class="cmd__name">/poll <span>question · options · anonymous?</span></code>
+              <span class="cmd__desc">Create instant polls with up to 10 options and live results.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="remind reminder alarm later" data-category="utility">
+              <code class="cmd__name">/remind <span>time · text</span></code>
+              <span class="cmd__desc">Set a personal reminder — stry will DM you when time's up.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="embed builder custom message" data-category="utility">
+              <code class="cmd__name">/embed <span>json</span></code>
+              <span class="cmd__desc">Post a rich embed from raw JSON. Full control over color, fields and images.</span>
+              <span class="badge badge--amber">Manage Messages</span>
+            </div>
+          </div>
+
+          <h3 class="cmd-group" data-group="levels">📈 Levels</h3>
+          <div class="cmd-list">
+            <div class="cmd reveal" data-search="rank card level xp progress" data-category="levels">
+              <code class="cmd__name">/rank <span>user?</span></code>
+              <span class="cmd__desc">Show a beautiful animated rank card for you or another member.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="leaderboard top lb ranking" data-category="levels">
+              <code class="cmd__name">/leaderboard <span>scope?</span></code>
+              <span class="cmd__desc">Top 10 most active members — server-wide or per-channel.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="givexp add xp award" data-category="levels">
+              <code class="cmd__name">/givexp <span>user · amount</span></code>
+              <span class="cmd__desc">Grant XP manually — great for events and giveaways.</span>
+              <span class="badge badge--amber">Manage Guild</span>
+            </div>
+            <div class="cmd reveal" data-search="levelrole rewards auto role assign" data-category="levels">
+              <code class="cmd__name">/levelrole <span>add · level · role</span></code>
+              <span class="cmd__desc">Automatically hand out roles when members reach a level.</span>
+              <span class="badge badge--amber">Manage Roles</span>
+            </div>
+          </div>
+
+          <h3 class="cmd-group" data-group="fun">🎮 Fun</h3>
+          <div class="cmd-list">
+            <div class="cmd reveal" data-search="8ball fortune question magic" data-category="fun">
+              <code class="cmd__name">/8ball <span>question</span></code>
+              <span class="cmd__desc">Ask the magic 8-ball anything. It knows.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="dice roll d6 d20 random" data-category="fun">
+              <code class="cmd__name">/dice <span>sides · count</span></code>
+              <span class="cmd__desc">Roll dice — from a coin-flip d2 to a chaotic d100.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="meme reddit funny picture" data-category="fun">
+              <code class="cmd__name">/meme</code>
+              <span class="cmd__desc">Fresh memes, delivered hot from the oven.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+            <div class="cmd reveal" data-search="ship match couple compatibility" data-category="fun">
+              <code class="cmd__name">/ship <span>user1 · user2</span></code>
+              <span class="cmd__desc">Calculate the compatibility of two members. Science™.</span>
+              <span class="badge badge--green">Everyone</span>
+            </div>
+          </div>
+
+          <div class="notice notice--info">
+            <strong>💡 Good to know</strong>
+            <p>Commands marked <em>Everyone</em> can be restricted per-channel with <code>/config</code> → <em>Command Overrides</em>.</p>
+          </div>
+        </section>
+
+        <!-- ======== CONFIGURATION ======== -->
+        <section class="doc" id="configuration" data-section>
+          <span class="doc__overline">Reference</span>
+          <h2 class="doc__title">Configuration</h2>
+          <p class="doc__lead">Tailor stry to your community. All settings are per-server and managed with commands.</p>
+
+          <h3>Welcome &amp; goodbye messages</h3>
+          <p>Greet new members with a customizable embed — support variables for username, member count and more.</p>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">example</span>
+              <button class="code-block__copy" data-copy>Copy</button>
+            </div>
+<pre><code>/config welcome channel:#welcome message:"Welcome {user} to **{server}**! You are member #{count}."</code></pre>
+          </div>
+
+          <h3>Auto-mod filters</h3>
+          <p>Automatically delete invites, links, spam, caps and banned words — and punish repeat offenders.</p>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">example</span>
+              <button class="code-block__copy" data-copy>Copy</button>
+            </div>
+<pre><code>/automod add filter:invites action:delete
+/automod add filter:bad_words action:timeout duration:10m
+/automod antiraid on</code></pre>
+          </div>
+
+          <h3>Logging</h3>
+          <p>Send moderation actions, message deletions, member joins/leaves and role changes to a private log channel.</p>
+          <div class="code-block">
+            <div class="code-block__header">
+              <span class="code-block__lang">example</span>
+              <button class="code-block__copy" data-copy>Copy</button>
+            </div>
+<pre><code>/config log channel:#mod-logs events:all</code></pre>
+          </div>
+        </section>
+
+        <!-- ======== PERMISSIONS ======== -->
+        <section class="doc" id="permissions" data-section>
+          <span class="doc__overline">Reference</span>
+          <h2 class="doc__title">Permissions</h2>
+          <p class="doc__lead">
+            stry respects Discord's native permissions. By default, a command requires the same permission it acts with.
+          </p>
+
+          <div class="table-wrap reveal">
+            <table>
+              <thead>
+                <tr><th>Level</th><th>Who</th><th>Can do</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge badge--green">0 · Everyone</span></td>
+                  <td>All members</td>
+                  <td>Fun, utility and level commands</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge--amber">1 · Moderator</span></td>
+                  <td>Members with a moderation permission (Kick / Ban / Timeout / Manage Messages)</td>
+                  <td>All moderation commands, automod, purge, cases</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge--red">2 · Administrator</span></td>
+                  <td>Members with <em>Administrator</em> or <em>Manage Guild</em></td>
+                  <td>Full configuration, level roles, command overrides</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge--violet">3 · Server Owner</span></td>
+                  <td>The server owner</td>
+                  <td>Everything, plus resetting all stry settings</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="notice notice--info">
+            <strong>💡 Best practice</strong>
+            <p>Give stry only the permissions it needs. Every command above lists the minimum permission required.</p>
+          </div>
+        </section>
+
+        <!-- ======== FAQ ======== -->
+        <section class="doc" id="faq" data-section>
+          <span class="doc__overline">Basics</span>
+          <h2 class="doc__title">FAQ</h2>
+          <p class="doc__lead">Quick answers to the questions we get most.</p>
+
+          <div class="faq">
+            <details class="faq__item reveal">
+              <summary>Is stry free?</summary>
+              <div class="faq__body"><p>Yes — every feature on this page is free forever. No paywalled moderation, no premium-only commands.</p></div>
+            </details>
+            <details class="faq__item reveal">
+              <summary>How do I change stry's permissions in my server?</summary>
+              <div class="faq__body"><p>Head to <em>Server Settings → Roles</em>, drag stry's role above the members it should manage, then re-invite it with the permissions listed in <a href="#getting-started">Getting Started</a>.</p></div>
+            </details>
+            <details class="faq__item reveal">
+              <summary>The bot isn't responding — what do I do?</summary>
+              <div class="faq__body"><p>Run <code>/ping</code> first. If it responds, check channel-level command overrides in <code>/config</code>. If it doesn't, check our status channel in the <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" rel="noopener">support server</a> — we post every incident there.</p></div>
+            </details>
+            <details class="faq__item reveal">
+              <summary>Can I use stry in multiple servers?</summary>
+              <div class="faq__body"><p>Absolutely. Invite it to as many servers as you like — settings are stored per server.</p></div>
+            </details>
+            <details class="faq__item reveal">
+              <summary>How do I report a bug or security issue?</summary>
+              <div class="faq__body"><p>Open a ticket in the <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" rel="noopener">support server</a>. Responsible disclosure of security bugs is always appreciated — we won't blacklist good-faith reports.</p></div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ======== TERMS ======== -->
+        <section class="doc" id="terms" data-section>
+          <span class="doc__overline">Legal</span>
+          <h2 class="doc__title">Terms of Service</h2>
+          <p class="doc__lead">Last updated: <strong>September 10, 2026</strong></p>
+
+          <div class="notice notice--danger">
+            <strong>🚨 Enforcement notice</strong>
+            <p>
+              <strong>The stry developers are NOT liable for any abuse, misuse, or damage resulting from the use of the bot.</strong>
+              Any manipulation, exploitation or abuse of stry — including bugs, rate-limit evasion or automated abuse —
+              will result in <strong>permanent removal of access to the bot, with no possibility of appeal.</strong>
+            </p>
+          </div>
+
+          <h3>1. Acceptance of terms</h3>
+          <p>By inviting, configuring or using stry (the "Bot") in any Discord server, you ("you", the "user") agree to these Terms of Service in full. If you do not agree, remove the Bot from your server and discontinue use immediately.</p>
+
+          <h3>2. The service</h3>
+          <p>stry is provided free of charge, on an "as is" and "as available" basis, without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose, availability, accuracy or non-infringement. Features may be added, changed or removed at any time.</p>
+
+          <h3>3. No liability for abuse</h3>
+          <p>
+            <strong>The developers of stry assume no responsibility or liability whatsoever for any abuse, misuse, or damage caused by users through the Bot.</strong>
+            This includes — without limitation — content posted with utility commands, moderation actions taken or omitted, data loss in your server, conflicts caused by misconfiguration, and any direct or indirect harm resulting from the use or inability to use the Bot.
+            Moderation tools act only on the instructions of your server staff. How those tools are used is entirely the responsibility of the server's administrators.
+          </p>
+
+          <h3>4. Manipulation &amp; abuse of the bot</h3>
+          <p>
+            <strong>Any attempt to manipulate, exploit, or abuse stry will result in immediate and permanent removal of access to the Bot.</strong>
+            Prohibited behavior includes, without limitation:
+          </p>
+          <ul class="legal-list">
+            <li>Exploiting bugs, glitches or unintended behavior instead of responsibly reporting them</li>
+            <li>Automating, scripting or self-botting interaction with the Bot</li>
+            <li>Attempting to crash, overload, rate-limit-evade or otherwise degrade the Bot's service</li>
+            <li>Using commands to harass, dox, spam or attack other users or servers</li>
+            <li>Attempting to reverse-engineer, scrape or interfere with the Bot's infrastructure</li>
+            <li>Circumventing an existing restriction or blacklist</li>
+          </ul>
+          <p>
+            Enforcement may include a <strong>permanent global blacklist of your user ID</strong>, removal of the Bot from servers you own or administer, and rejection of all future access — <strong>permanent means permanent; there is no appeal process</strong>.
+          </p>
+
+          <h3>5. Fair use &amp; rate limits</h3>
+          <p>stry implements rate limits to protect service quality for everyone. Deliberately evading or attempting to evade rate limits is treated as abuse under Section 4.</p>
+
+          <h3>6. Termination</h3>
+          <p>We reserve the right to deny, suspend or terminate access to the Bot — for any user or server, at any time, for any reason — including reasons not explicitly listed in these Terms. You may stop using the Bot at any time by removing it from your server.</p>
+
+          <h3>7. Changes to these terms</h3>
+          <p>These Terms may be updated at any time. Continued use of the Bot after changes are published constitutes acceptance of the revised Terms. The current version is always available on this page.</p>
+
+          <h3>8. Contact</h3>
+          <p>Questions about these Terms can be raised in the <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" rel="noopener">official support server</a>.</p>
+        </section>
+
+        <!-- ======== PRIVACY ======== -->
+        <section class="doc" id="privacy" data-section>
+          <span class="doc__overline">Legal</span>
+          <h2 class="doc__title">Privacy Policy</h2>
+          <p class="doc__lead">Last updated: <strong>September 10, 2026</strong> — stry stores the minimum needed to run your configuration.</p>
+
+          <h3>What we store</h3>
+          <ul class="legal-list">
+            <li><strong>Server configuration</strong> — server ID, channel IDs and settings you explicitly configure</li>
+            <li><strong>Moderation records</strong> — case IDs, involved user IDs, reasons and timestamps</li>
+            <li><strong>Level data</strong> — user IDs, XP and level values per server</li>
+          </ul>
+
+          <h3>What we never do</h3>
+          <ul class="legal-list">
+            <li>❌ Read or store the content of your members' regular messages</li>
+            <li>❌ Sell, share or transmit data to third parties</li>
+            <li>❌ Store payment data — there is nothing to pay for</li>
+          </ul>
+
+          <h3>Retention &amp; deletion</h3>
+          <p>Data is kept only while the Bot remains in your server. Removing stry wipes its configuration within 30 days. For immediate deletion of specific records, request it in the <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" rel="noopener">support server</a>.</p>
+
+          <div class="notice notice--info">
+            <strong>📝 Note</strong>
+            <p>stry is not affiliated with, endorsed by, or sponsored by Discord Inc. Any trade names used belong to their respective owners.</p>
+          </div>
+        </section>
+
+        <!-- ======== SUPPORT ======== -->
+        <section class="doc" id="support" data-section>
+          <span class="doc__overline">Help</span>
+          <h2 class="doc__title">Support</h2>
+          <p class="doc__lead">Stuck, found a bug, or just want to hang out? We're one click away.</p>
+
+          <div class="support-grid">
+            <a class="support-card reveal" href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" rel="noopener">
+              <div class="support-card__icon support-card__icon--violet">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.029ZM8.02 15.331c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/></svg>
+              </div>
+              <h4>Support Server</h4>
+              <p>Live help, bug reports, status updates and feature requests from the team.</p>
+              <span class="support-card__cta">Join →</span>
+            </a>
+            <a class="support-card reveal" href="#commands">
+              <div class="support-card__icon support-card__icon--cyan">⌘</div>
+              <h4>Command Reference</h4>
+              <p>Every command, permission requirement and example — searchable on one page.</p>
+              <span class="support-card__cta">Browse →</span>
+            </a>
+            <a class="support-card reveal" href="#terms">
+              <div class="support-card__icon support-card__icon--magenta">§</div>
+              <h4>Report Abuse</h4>
+              <p>Seeing someone abuse or manipulate the bot? Report it — action is fast and permanent.</p>
+              <span class="support-card__cta">Review the Terms →</span>
+            </a>
+          </div>
+
+          <div class="cta-banner reveal">
+            <h3>Ready to power up your server?</h3>
+            <p>Add stry in seconds — no setup stress, free forever.</p>
+            <a class="btn btn--primary btn--lg" href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands" target="_blank" rel="noopener">Add stry to Discord</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/logo.png" alt="stry" class="footer__logo" />
+        <p>All-in-one Discord bot.<br/>Moderation · Levels · Utilities · Fun</p>
+      </div>
+      <nav class="footer__nav">
+        <div>
+          <span class="footer__label">Docs</span>
+          <a href="#introduction">Introduction</a>
+          <a href="#getting-started">Getting Started</a>
+          <a href="#commands">Commands</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <span class="footer__label">Legal</span>
+          <a href="#terms">Terms of Service</a>
+          <a href="#privacy">Privacy Policy</a>
+        </div>
+        <div>
+          <span class="footer__label">Community</span>
+          <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank" rel="noopener">Support Server</a>
+          <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands" target="_blank" rel="noopener">Invite stry</a>
+        </div>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> stry. All rights reserved. Not affiliated with Discord Inc.</p>
+      <p class="footer__legal">Provided "as is" — the developers are not liable for abuse. Manipulation of the bot results in permanent loss of access.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
