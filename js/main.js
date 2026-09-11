@@ -9,6 +9,47 @@
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- scroll progress + smart topbar + back-to-top ---------- */
+  const progress = $("#progress");
+  const header = $(".topbar");
+  const toTop = $("#toTop");
+  let lastY = window.scrollY;
+
+  const onScroll = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    if (progress) progress.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0) + "%";
+
+    if (header) {
+      header.classList.toggle("is-scrolled", doc.scrollTop > 8);
+      const delta = doc.scrollTop - lastY;
+      if (Math.abs(delta) > 4) {
+        header.classList.toggle("is-hidden", delta > 0 && doc.scrollTop > 300);
+        lastY = doc.scrollTop;
+      }
+    }
+
+    if (toTop) toTop.classList.toggle("is-visible", doc.scrollTop > 600);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  if (toTop) {
+    toTop.addEventListener("click", () =>
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    );
+  }
+
+  /* ---------- staggered reveals ---------- */
+  $$(".steps, .explore, .support-grid, .faq").forEach((group) => {
+    $$(".reveal", group).forEach((el, i) =>
+      el.style.setProperty("--d", `${i * 80}ms`)
+    );
+  });
+  $$(".reveal").forEach((el) =>
+    el.addEventListener("transitionend", () => el.style.removeProperty("--d"), { once: true })
+  );
+
   /* ---------- reveal on scroll ---------- */
   const revealObserver = new IntersectionObserver(
     (entries) => {

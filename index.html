@@ -17,6 +17,8 @@
 </head>
 <body>
 
+  <div id="progress" aria-hidden="true"></div>
+
   <div class="page-wash" aria-hidden="true"></div>
   <div class="grid-overlay" aria-hidden="true"></div>
 
@@ -51,7 +53,7 @@
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="hero__inner container">
-        <div class="hero__copy reveal">
+        <div class="hero__copy">
           <span class="hero__eyebrow">
             <img src="assets/logo.png" alt="" class="hero__eyebrow-logo" />
             Official documentation
@@ -67,7 +69,7 @@
           </div>
         </div>
 
-        <div class="hero__visual reveal" aria-hidden="true">
+        <div class="hero__visual" aria-hidden="true">
           <div class="hero__glow"></div>
           <div class="phone-parallax phone-parallax--back" data-depth="6">
             <div class="phone phone--back">
@@ -115,18 +117,18 @@
     </section>
 
     <!-- ============ EXPLORE ============ -->
-    <section class="explore container reveal">
-      <a class="explore-card" href="#introduction">
+    <section class="explore container">
+      <a class="explore-card reveal" href="#introduction">
         <h3>Introduction</h3>
         <p>What stry is and how this documentation is organized.</p>
         <span class="explore-card__cta">Read →</span>
       </a>
-      <a class="explore-card" href="#getting-started">
+      <a class="explore-card reveal" href="#getting-started">
         <h3>Getting Started</h3>
         <p>Add the bot to a server and get the setup right the first time.</p>
         <span class="explore-card__cta">Read →</span>
       </a>
-      <a class="explore-card" href="#terms">
+      <a class="explore-card reveal" href="#terms">
         <h3>Terms of Service</h3>
         <p>The rules that apply to every server using stry.</p>
         <span class="explore-card__cta">Read →</span>
@@ -239,21 +241,21 @@
           <p class="doc__lead">Short answers to the most common questions.</p>
 
           <div class="faq">
-            <details class="faq__item reveal">
+            <details class="faq__item reveal" name="faq">
               <summary>Who can add stry to a server?</summary>
               <div class="faq__body"><p>Any member with the <strong>Manage Server</strong> permission. Bots cannot be added by regular members.</p></div>
             </details>
-            <details class="faq__item reveal">
+            <details class="faq__item reveal" name="faq">
               <summary>stry isn't responding in my server. What should I check?</summary>
               <div class="faq__body">
                 <p>First, confirm the bot is still a member of the server and is not offline. Then check that it has permission to view and send messages in the channel you are using, and that its role sits above the roles it needs to manage. If the problem persists, ask in the <a href="https://discord.gg/E56wBApKB" target="_blank" rel="noopener">support server</a>.</p>
               </div>
             </details>
-            <details class="faq__item reveal">
+            <details class="faq__item reveal" name="faq">
               <summary>How do I report a bug or a security issue?</summary>
               <div class="faq__body"><p>Report it in the <a href="https://discord.gg/E56wBApKB" target="_blank" rel="noopener">support server</a>. Good-faith security reports are always welcome — reporting a vulnerability responsibly is not treated as abuse.</p></div>
             </details>
-            <details class="faq__item reveal">
+            <details class="faq__item reveal" name="faq">
               <summary>Can loss of access be appealed?</summary>
               <div class="faq__body"><p>No. Under the <a href="#terms">Terms of Service</a>, removal of access for manipulation or abuse of the bot is permanent.</p></div>
             </details>
@@ -398,6 +400,10 @@
       <p class="footer__legal">The stry developers are not liable for abuse or misuse. Manipulation of the bot results in permanent loss of access.</p>
     </div>
   </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
 
   <script src="js/main.js"></script>
 </body>
