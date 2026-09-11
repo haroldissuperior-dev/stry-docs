@@ -22,15 +22,11 @@ stry-docs/
 └── README.md
 ```
 
-## 🔗 Before you go live — replace the placeholder
+## ✅ Before you go live
 
-One placeholder exists in `index.html`:
+The support-server links are already wired to `https://discord.gg/E56wBApKB`.
 
-| Placeholder | Replace with |
-|---|---|
-| `YOUR_INVITE_CODE` | The invite code of your support server (the part after `discord.gg/`) |
-
-Also review:
+Still review:
 
 - **Privacy Policy** — an HTML comment in `index.html` marks the section; adjust it to match
   the bot's actual data practices.
