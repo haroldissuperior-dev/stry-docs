@@ -138,6 +138,11 @@
       history.replaceState(null, "", "/#announcements");
     }
 
+    /* skeleton shimmer while the feed loads */
+    list.innerHTML = `
+      <div class="ann-skeleton"><div class="sk-row"><span class="sk-avatar"></span><span class="sk-bar" style="width:120px"></span></div><span class="sk-bar" style="width:55%"></span><span class="sk-bar" style="width:88%"></span></div>
+      <div class="ann-skeleton"><div class="sk-row"><span class="sk-avatar"></span><span class="sk-bar" style="width:100px"></span></div><span class="sk-bar" style="width:48%"></span><span class="sk-bar" style="width:76%"></span></div>`;
+
     try {
       const [me, feed] = await Promise.all([
         api("/api/auth/me"),

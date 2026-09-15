@@ -5,6 +5,11 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
+  /* ---------- motion preference (site toggle overrides OS setting) ---------- */
+  const motion = {
+    on: document.documentElement.dataset.motion !== "off",
+  };
+
   /* ---------- footer year ---------- */
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -83,8 +88,17 @@
 
     if (toTop) toTop.classList.toggle("is-visible", doc.scrollTop > 600);
 
+    if (!motion.on) return;
+
     const aurora = $(".aurora");
     if (aurora) aurora.style.transform = `translateY(${(doc.scrollTop * -0.05).toFixed(1)}px)`;
+
+    /* hero parallax — whole section drifts and fades on scroll */
+    const hero = $(".hero");
+    if (hero && doc.scrollTop < 900) {
+      hero.style.transform = `translateY(${(doc.scrollTop * 0.12).toFixed(1)}px)`;
+      hero.style.opacity = Math.max(0, 1 - doc.scrollTop / 780).toFixed(2);
+    }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
@@ -131,6 +145,7 @@
         navLinks.forEach((link) =>
           link.classList.toggle("is-active", link.getAttribute("href") === "#" + id)
         );
+        if (window.positionSidenavIndicator) window.positionSidenavIndicator();
       });
     },
     { rootMargin: "-25% 0px -65% 0px", threshold: 0 }
@@ -206,27 +221,105 @@
     );
   }
 
-  /* ---------- cursor spotlight on cards ---------- */
-  if (window.matchMedia("(pointer: fine)").matches) {
-    $$(".explore-card, .support-card, .step").forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--mx", `${(e.clientX - rect.left).toFixed(0)}px`);
-        card.style.setProperty("--my", `${(e.clientY - rect.top).toFixed(0)}px`);
+  /* ---------- pointer effects: spotlight, tilt, magnetic, ripple, glow ---------- */
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  if (finePointer) {
+    /* cursor glow — soft light trailing the pointer */
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    document.body.appendChild(glow);
+    let gx = innerWidth / 2, gy = innerHeight / 2, tx = gx, ty = gy, glowOn = false;
+    document.addEventListener("mousemove", (e) => {
+      if (!motion.on) { glow.style.opacity = "0"; glowOn = false; return; }
+      tx = e.clientX; ty = e.clientY;
+      if (!glowOn) { glowOn = true; glow.style.opacity = "1"; }
+    }, { passive: true });
+    (function glowLoop() {
+      gx += (tx - gx) * 0.1;
+      gy += (ty - gy) * 0.1;
+      glow.style.transform = `translate(${gx.toFixed(1)}px, ${gy.toFixed(1)}px)`;
+      requestAnimationFrame(glowLoop);
+    })();
+
+    /* delegated spotlight + 3D tilt on cards (works with re-rendered nodes) */
+    const TILT_SEL = ".explore-card, .support-card";
+    const SPOT_SEL = ".explore-card, .support-card, .step, .ann";
+    let tilted = null;
+    const resetTilt = (el) => { el.style.transform = ""; };
+    document.addEventListener("mousemove", (e) => {
+      const spot = e.target.closest(SPOT_SEL);
+      if (spot) {
+        const r = spot.getBoundingClientRect();
+        spot.style.setProperty("--mx", `${(e.clientX - r.left).toFixed(0)}px`);
+        spot.style.setProperty("--my", `${(e.clientY - r.top).toFixed(0)}px`);
+      }
+      if (!motion.on) return;
+      const tiltEl = e.target.closest(TILT_SEL);
+      if (tilted && tilted !== tiltEl) { resetTilt(tilted); tilted = null; }
+      if (tiltEl) {
+        const r = tiltEl.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        tiltEl.style.transform =
+          `perspective(800px) rotateY(${(px * 7).toFixed(2)}deg) rotateX(${(-py * 7).toFixed(2)}deg) translateY(-2px)`;
+        tilted = tiltEl;
+      }
+    }, { passive: true });
+    document.addEventListener("mouseout", (e) => {
+      if (tilted && !e.relatedTarget?.closest?.(TILT_SEL)) { resetTilt(tilted); tilted = null; }
+    }, { passive: true });
+
+    /* magnetic buttons */
+    $$(".btn, .theme-toggle").forEach((btn) => {
+      btn.addEventListener("mousemove", (e) => {
+        if (!motion.on) return;
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) / r.width;
+        const dy = (e.clientY - r.top - r.height / 2) / r.height;
+        btn.style.transform = `translate(${(dx * 7).toFixed(1)}px, ${(dy * 6).toFixed(1)}px)`;
       });
+      btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
     });
+
+    /* ripple on primary buttons */
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn--primary");
+      if (!btn || !motion.on) return;
+      const r = btn.getBoundingClientRect();
+      const ripple = document.createElement("span");
+      ripple.className = "ripple";
+      const size = Math.max(r.width, r.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - r.left - size / 2}px`;
+      ripple.style.top = `${e.clientY - r.top - size / 2}px`;
+      btn.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+    });
+  }
+
+  /* ---------- sidebar floating indicator ---------- */
+  const sidenav = $("#sidenav");
+  if (sidenav) {
+    const indicator = document.createElement("span");
+    indicator.className = "sidenav__indicator";
+    sidenav.appendChild(indicator);
+    window.positionSidenavIndicator = () => {
+      const active = sidenav.querySelector(".sidenav__link.is-active");
+      if (!active) { indicator.style.opacity = "0"; return; }
+      indicator.style.opacity = "1";
+      indicator.style.top = `${active.offsetTop + 4}px`;
+      indicator.style.height = `${active.offsetHeight - 8}px`;
+    };
+    window.addEventListener("resize", () => window.positionSidenavIndicator());
   }
 
   /* ---------- hero phone parallax (desktop pointers only) ---------- */
   const hero = $(".hero");
   const parallaxLayers = $$(".phone-parallax");
-  if (
-    hero &&
-    parallaxLayers.length &&
-    window.matchMedia("(pointer: fine)").matches &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ) {
+  if (hero && parallaxLayers.length && window.matchMedia("(pointer: fine)").matches) {
     hero.addEventListener("mousemove", (e) => {
+      if (!motion.on) return;
       const rect = hero.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -237,6 +330,25 @@
     });
     hero.addEventListener("mouseleave", () => {
       parallaxLayers.forEach((layer) => (layer.style.transform = ""));
+    });
+  }
+
+  /* ---------- animations toggle (overrides OS reduced-motion) ---------- */
+  const motionToggle = $("#motionToggle");
+  if (motionToggle) {
+    const syncToggle = () =>
+      motionToggle.setAttribute("aria-pressed", String(motion.on));
+    syncToggle();
+    motionToggle.addEventListener("click", () => {
+      motion.on = !motion.on;
+      document.documentElement.dataset.motion = motion.on ? "on" : "off";
+      try { localStorage.setItem("stry-motion", motion.on ? "on" : "off"); } catch (e) {}
+      syncToggle();
+      if (!motion.on) {
+        $$(".phone-parallax, .explore-card, .support-card").forEach((el) => (el.style.transform = ""));
+        const hero = $(".hero");
+        if (hero) { hero.style.transform = ""; hero.style.opacity = ""; }
+      }
     });
   }
 
