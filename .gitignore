@@ -8,6 +8,9 @@ desktop.ini
 .idea/
 *.swp
 
+# Secrets
+.env*
+
 # Node (if you add tooling later)
 node_modules/
 .vercel/

@@ -185,6 +185,7 @@
             <a href="#introduction" class="sidenav__link">Introduction</a>
             <a href="#getting-started" class="sidenav__link">Getting Started</a>
             <a href="#faq" class="sidenav__link">FAQ</a>
+            <a href="#announcements" class="sidenav__link">Announcements</a>
           </div>
           <div class="sidenav__group">
             <span class="sidenav__label">Legal</span>
@@ -300,6 +301,41 @@
               <summary>Can loss of access be appealed?</summary>
               <div class="faq__body"><p>No. Under the <a href="#terms">Terms of Service</a>, removal of access for manipulation or abuse of the bot is permanent.</p></div>
             </details>
+          </div>
+        </section>
+
+        <!-- ======== ANNOUNCEMENTS ======== -->
+        <section class="doc" id="announcements" data-section>
+          <span class="doc__overline">Community</span>
+          <h2 class="doc__title">Announcements</h2>
+          <p class="doc__lead">
+            Updates from the stry team, posted by admins of the
+            <strong>Stry Systems</strong> Discord server. Sign in with Discord to
+            verify your permissions.
+          </p>
+
+          <div class="ann-auth" id="annAuth"></div>
+
+          <div class="ann-composer reveal" id="annComposer" hidden>
+            <label class="ann-field">
+              <span>Title</span>
+              <input type="text" id="annTitle" maxlength="120" placeholder="What's new?" autocomplete="off" />
+            </label>
+            <label class="ann-field">
+              <span>Message</span>
+              <textarea id="annBody" maxlength="2000" rows="4" placeholder="Write the announcement…"></textarea>
+            </label>
+            <div class="ann-composer__row">
+              <span class="ann-char" id="annChar">0 / 2000</span>
+              <button class="btn btn--primary btn--sm" id="annPost" type="button">Post announcement</button>
+            </div>
+          </div>
+
+          <div class="ann-list" id="annList">
+            <div class="ann-empty" id="annEmpty" hidden>
+              <p>No announcements yet.</p>
+              <span>Admins of Stry Systems can post the first one.</span>
+            </div>
           </div>
         </section>
 
@@ -424,6 +460,7 @@
           <a href="#introduction">Introduction</a>
           <a href="#getting-started">Getting Started</a>
           <a href="#faq">FAQ</a>
+          <a href="#announcements">Announcements</a>
         </div>
         <div>
           <span class="footer__label">Legal</span>
@@ -447,5 +484,6 @@
   </button>
 
   <script src="js/main.js"></script>
+  <script src="js/announcements.js"></script>
 </body>
 </html>
