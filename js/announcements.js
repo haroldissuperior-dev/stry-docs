@@ -132,6 +132,12 @@
   /* ---------- actions ---------- */
 
   async function load() {
+    const hashQuery = location.hash.split("?")[1];
+    const hashError = hashQuery ? new URLSearchParams(hashQuery).get("error") : null;
+    if (hashError) {
+      history.replaceState(null, "", "/#announcements");
+    }
+
     try {
       const [me, feed] = await Promise.all([
         api("/api/auth/me"),
@@ -143,6 +149,18 @@
       state.announcements = [];
     }
     renderAuth();
+    if (hashError) {
+      const messages = {
+        state: "Sign-in session expired — please try again.",
+        token: "Discord rejected the sign-in. Please try again.",
+        user: "Couldn't read your Discord profile. Please try again.",
+        not_configured: "Discord login isn't configured on this deployment yet.",
+      };
+      authBox.insertAdjacentHTML(
+        "afterbegin",
+        `<div class="ann-error">${esc(messages[hashError] || "Sign-in failed — please try again.")}</div>`
+      );
+    }
     renderList();
     composer.hidden = !(state.user && state.user.isAdmin);
   }

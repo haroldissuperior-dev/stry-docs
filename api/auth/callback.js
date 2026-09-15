@@ -1,4 +1,4 @@
-const { DISCORD_API, GUILD_ID, ADMIN_BIT, sign, sessionCookie, clearStateCookie, parseCookies, redirectUri, avatarUrl, STATE_COOKIE, appConfigured } = require("../../_lib");
+const { DISCORD_API, GUILD_ID, ADMIN_BIT, sign, sessionCookie, clearStateCookie, parseCookies, redirectUri, avatarUrl, STATE_COOKIE, appConfigured } = require("../_lib");
 
 module.exports = async (req, res) => {
   const url = new URL(req.url, "http://localhost");

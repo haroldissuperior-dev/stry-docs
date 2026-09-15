@@ -1757,6 +1757,17 @@ a { color: var(--text); text-decoration: none; }
   color: var(--faint);
 }
 
+.ann-error {
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--text);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 13.5px;
+  padding: 11px 15px;
+  margin-bottom: 12px;
+}
+
 /* composer */
 .ann-composer {
   background: var(--bg-soft);
