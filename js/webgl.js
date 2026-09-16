@@ -197,38 +197,102 @@ function screenTexture(kind, dark) {
   g.fillRect(0, 0, c.width, c.height);
 
   const bar = dark ? "#2a2a30" : "#e6e6ea";
+  const barSoft = dark ? "#232328" : "#eeeeF1";
   const ink = dark ? "#f2f2f4" : "#111113";
   const faint = dark ? "#3a3a41" : "#cfcfd6";
 
+  const rr = (x, y, w, h, r) => {
+    g.beginPath();
+    g.moveTo(x + r, y);
+    g.arcTo(x + w, y, x + w, y + h, r);
+    g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r);
+    g.arcTo(x, y, x + w, y, r);
+    g.closePath();
+    g.fill();
+  };
+
   if (kind === "phone") {
+    /* status bar */
+    g.fillStyle = ink;
+    g.font = "600 16px Inter, Arial, sans-serif";
+    g.textAlign = "left";
+    g.fillText("9:41", 26, 34);
+    g.textAlign = "right";
+    for (let i = 0; i < 3; i++) {
+      g.fillRect(c.width - 66 + i * 13, 24, 8, 8);
+    }
+    /* island */
     g.fillStyle = dark ? "#26262b" : "#e3e3e8";
-    g.fillRect(c.width / 2 - 42, 14, 84, 17);
+    rr(c.width / 2 - 42, 18, 84, 18, 9);
+    /* wordmark */
     g.fillStyle = ink;
     g.font = "700 58px Inter, Arial, sans-serif";
     g.textAlign = "center";
-    g.fillText("stry", c.width / 2, 170);
-    g.fillStyle = bar;
-    const rows = [0.62, 0.84, 0.72, 0.9, 0.5];
-    rows.forEach((w, i) => {
-      g.fillRect(36, 240 + i * 34, (c.width - 72) * w, 12);
-    });
-    g.fillStyle = dark ? "#f2f2f4" : "#111113";
-    g.fillRect(36, c.height - 46, (c.width - 72) * 0.34, 12);
-  } else {
-    g.fillStyle = dark ? "#1b1b1f" : "#e9e9ee";
-    g.fillRect(0, 0, c.width, 34);
-    g.fillStyle = ink;
-    g.font = "700 26px Inter, Arial, sans-serif";
-    g.fillText("stry docs", 28, 74);
+    g.fillText("stry", c.width / 2, 172);
     g.fillStyle = faint;
-    g.fillRect(28, 100, c.width - 56, 10);
-    g.fillStyle = bar;
-    const rows = [0.9, 0.72, 0.82, 0.6];
-    rows.forEach((w, i) => {
-      g.fillRect(28, 136 + i * 30, (c.width - 56) * w, 12);
+    g.fillRect(c.width / 2 - 30, 190, 60, 5);
+    /* section title */
+    g.fillStyle = ink;
+    g.textAlign = "left";
+    g.font = "600 22px Inter, Arial, sans-serif";
+    g.fillText("Documentation", 26, 252);
+    /* content cards */
+    const cards = [70, 118, 166];
+    cards.forEach((y) => {
+      g.fillStyle = dark ? "#1c1c21" : "#ececef";
+      rr(26, y, c.width - 52, 40, 10);
+      g.fillStyle = bar;
+      rr(38, y + 10, (c.width - 76) * 0.55, 8, 4);
+      g.fillStyle = dark ? "#33333a" : "#dcdce1";
+      rr(38, y + 24, (c.width - 76) * 0.8, 7, 4);
     });
-    g.fillStyle = dark ? "#0c0c0e" : "#111113";
-    g.fillRect(28, c.height - 52, 150, 30);
+    /* bottom pill + nav */
+    g.fillStyle = dark ? "#f2f2f4" : "#111113";
+    rr(26, c.height - 64, (c.width - 52) * 0.42, 30, 15);
+    g.fillStyle = faint;
+    rr(c.width / 2 - 52, c.height - 18, 104, 6, 3);
+  } else {
+    /* browser chrome */
+    g.fillStyle = dark ? "#1b1b1f" : "#e9e9ee";
+    g.fillRect(0, 0, c.width, 36);
+    g.fillStyle = dark ? "#3a3a41" : "#c9c9cf";
+    [24, 44, 64].forEach((x) => {
+      g.beginPath();
+      g.arc(x, 18, 5, 0, Math.PI * 2);
+      g.fill();
+    });
+    g.fillStyle = dark ? "#26262b" : "#f8f8fa";
+    rr(84, 8, c.width - 200, 20, 10);
+    g.fillStyle = faint;
+    g.font = "500 12px Inter, Arial, sans-serif";
+    g.textAlign = "left";
+    g.fillText("docs.stry.app", 96, 22);
+
+    /* page title */
+    g.fillStyle = ink;
+    g.font = "700 30px Inter, Arial, sans-serif";
+    g.fillText("stry docs", 28, 82);
+    g.fillStyle = bar;
+    g.fillRect(28, 96, 150, 7);
+
+    /* sidebar + content columns */
+    g.fillStyle = dark ? "#1c1c21" : "#ececef";
+    rr(28, 122, 128, c.height - 158, 10);
+    g.fillStyle = faint;
+    [138, 160, 182, 204].forEach((y, i) => {
+      g.fillRect(42, y, [86, 70, 92, 58][i], 8);
+    });
+    g.fillStyle = bar;
+    [122, 152, 182].forEach((y, i) => {
+      g.fillRect(176, y, (c.width - 204) * [0.92, 0.78, 0.86][i], 10);
+    });
+    /* cta button */
+    g.fillStyle = dark ? "#f2f2f4" : "#111113";
+    rr(176, c.height - 56, 132, 32, 8);
+    g.fillStyle = dark ? "#0c0c0e" : "#f2f2f4";
+    g.font = "600 13px Inter, Arial, sans-serif";
+    g.fillText("Get started", 192, c.height - 35);
   }
 
   const tex = new THREE.CanvasTexture(c);
@@ -313,6 +377,11 @@ function initHero() {
     metalness: 0.55,
     roughness: 0.5,
   });
+  const silverMat = new THREE.MeshStandardMaterial({
+    color: 0x9a9aa2,
+    metalness: 0.9,
+    roughness: 0.3,
+  });
 
   /* --- front phone --- */
   const phone = new THREE.Group();
@@ -321,7 +390,16 @@ function initHero() {
   const pScreen = new THREE.Mesh(new THREE.PlaneGeometry(1.44, 3.06), pScreenMat);
   pScreen.position.z = 0.105;
   phone.add(pScreen);
-  phone.position.set(-0.9, 0.1, 0.45);
+  /* side buttons */
+  const power = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.42, 0.07), silverMat);
+  power.position.set(0.825, 0.28, 0);
+  phone.add(power);
+  [-0.12, 0.14].forEach((dy) => {
+    const vol = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.22, 0.07), silverMat);
+    vol.position.set(-0.825, dy + 0.1, 0);
+    phone.add(vol);
+  });
+  phone.position.set(-0.85, 0.05, 0.45);
   phone.rotation.set(0.05, 0.42, -0.05);
   world.add(phone);
 
@@ -332,8 +410,8 @@ function initHero() {
   const p2Screen = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2.9), p2Mat);
   p2Screen.position.z = 0.1;
   phone2.add(p2Screen);
-  phone2.position.set(-1.8, -0.15, -0.55);
-  phone2.rotation.set(0.04, 0.28, -0.06);
+  phone2.position.set(-2.3, 1.3, -1.2);
+  phone2.rotation.set(0.04, 0.3, 0.1);
   world.add(phone2);
 
   /* --- laptop --- */
@@ -346,6 +424,19 @@ function initHero() {
   kb.rotation.x = -Math.PI / 2;
   kb.position.y = 0.08;
   laptop.add(kb);
+  /* trackpad */
+  const trackpad = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.92, 0.56),
+    new THREE.MeshStandardMaterial({ color: 0x1c1c21, metalness: 0.45, roughness: 0.42 })
+  );
+  trackpad.rotation.x = -Math.PI / 2;
+  trackpad.position.set(0, 0.082, 0.5);
+  laptop.add(trackpad);
+  /* hinge bar */
+  const hinge = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 2.42, 20), darkMat);
+  hinge.rotation.z = Math.PI / 2;
+  hinge.position.set(0, 0.1, -0.83);
+  laptop.add(hinge);
   const lid = new THREE.Group();
   const lidBody = new THREE.Mesh(roundedBoxGeo(2.4, 1.6, 0.09, 0.08), bodyMat);
   lidBody.position.set(0, 0.8, -0.045);
@@ -370,16 +461,29 @@ function initHero() {
   shadow.position.set(0.1, -1.9, 0);
   world.add(shadow);
 
-  /* --- sizing --- */
-  const setSize = () => {
+  /* --- sizing: camera auto-fits the whole scene, nothing ever clips --- */
+  const HALF_FOV = THREE.MathUtils.degToRad(35 / 2);
+  const SCENE_HALF_W = 3.3;   // widest device extent + margin
+  const SCENE_HALF_H = 3.15;  // tallest extent + margin
+  const SCENE_FRONT_Z = 0.7;  // closest device face to camera
+
+  let camDist = 9;
+  const fitCamera = () => {
     const w = host.clientWidth || visual.clientWidth || 600;
     const h = host.clientHeight || visual.clientHeight || 620;
+    const aspect = w / h;
+    camDist =
+      Math.max(
+        SCENE_HALF_W / (Math.tan(HALF_FOV) * aspect),
+        SCENE_HALF_H / Math.tan(HALF_FOV)
+      ) + SCENE_FRONT_Z;
     renderer.setSize(w, h, false);
-    cam.aspect = w / h;
+    cam.aspect = aspect;
+    cam.position.z = camDist;
     cam.updateProjectionMatrix();
   };
-  setSize();
-  addEventListener("resize", setSize);
+  fitCamera();
+  addEventListener("resize", fitCamera);
 
   /* --- drag rotation + parallax --- */
   let dragging = false, lx = 0, ly = 0;
@@ -421,7 +525,7 @@ function initHero() {
     parY += (tParY - parY) * 0.05;
     cam.position.x = parX * 0.45;
     cam.position.y = 0.3 - parY * 0.3;
-    cam.lookAt(0, -0.25, 0);
+    cam.lookAt(0, -0.2, 0);
 
     phone.position.y = 0.15 + Math.sin(t * 0.9) * 0.07;
     phone.rotation.z = -0.05 + Math.sin(t * 0.6) * 0.025;
