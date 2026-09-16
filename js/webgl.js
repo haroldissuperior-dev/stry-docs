@@ -502,7 +502,7 @@ function initHero() {
     phone.add(vol);
   });
   phone.scale.setScalar(1.12);
-  phone.position.set(-0.7, 0.02, 0.5);
+  phone.position.set(-0.9, 0.05, 0.55);
   phone.rotation.set(0.05, 0.42, -0.05);
   world.add(phone);
 
@@ -554,8 +554,8 @@ function initHero() {
   lid.rotation.x = -0.22;
   laptop.add(lid);
   laptop.scale.setScalar(1.12);
-  laptop.position.set(0.8, -0.85, -0.35);
-  laptop.rotation.y = -0.42;
+  laptop.position.set(1.2, -0.9, -0.75);
+  laptop.rotation.y = -0.52;
   world.add(laptop);
 
   /* --- soft ground shadow --- */
