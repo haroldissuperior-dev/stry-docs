@@ -2126,3 +2126,34 @@ html[data-motion="off"] #motionToggle .icon-motion-off { display: block; }
   .hero-chip { display: none; }
   .cursor-glow { display: none; }
 }
+
+/* ==========================================================================
+   webgl layer
+   ========================================================================== */
+
+#gl-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+}
+
+#gl-hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+#gl-hero.ready { opacity: 1; }
+#gl-hero:active { cursor: grabbing; }
+
+.hero__visual.gl-on .phone-parallax,
+.hero__visual.gl-on .hero__ring,
+.hero__visual.gl-on .hero__glow,
+.hero__visual.gl-on .hero__floor { display: none; }
