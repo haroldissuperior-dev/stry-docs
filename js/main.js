@@ -119,6 +119,22 @@
     el.addEventListener("transitionend", () => el.style.removeProperty("--d"), { once: true })
   );
 
+  /* ---------- incident timeline cascade ---------- */
+  const incident = $("#incident");
+  if (incident) {
+    new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            incident.classList.add("is-live");
+            obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    ).observe(incident);
+  }
+
   /* ---------- reveal on scroll ---------- */
   const revealObserver = new IntersectionObserver(
     (entries) => {

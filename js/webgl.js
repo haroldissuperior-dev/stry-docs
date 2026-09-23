@@ -168,8 +168,9 @@ const PHONE_REGIONS = [
 const LAPTOP_REGIONS = [
   { id: "l-intro", x: 40,  y: 130, w: 104, h: 18, label: "Introduction", scroll: "#introduction" },
   { id: "l-start", x: 40,  y: 152, w: 104, h: 18, label: "Getting started", scroll: "#getting-started" },
-  { id: "l-faq",   x: 40,  y: 174, w: 104, h: 18, label: "FAQ", scroll: "#faq" },
-  { id: "l-terms", x: 40,  y: 196, w: 104, h: 18, label: "Terms of Service", scroll: "#terms" },
+  { id: "l-panic", x: 40,  y: 174, w: 104, h: 18, label: "Panic mode", scroll: "#panic-mode" },
+  { id: "l-faq",   x: 40,  y: 196, w: 104, h: 18, label: "FAQ", scroll: "#faq" },
+  { id: "l-terms", x: 40,  y: 218, w: 104, h: 18, label: "Terms of Service", scroll: "#terms" },
   { id: "l-cta",   x: 176, y: 264, w: 132, h: 32, label: "Get started", scroll: "#getting-started" },
 ];
 

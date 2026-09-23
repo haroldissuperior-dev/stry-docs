@@ -209,6 +209,7 @@
             <span class="sidenav__label">Documentation</span>
             <a href="#introduction" class="sidenav__link">Introduction</a>
             <a href="#getting-started" class="sidenav__link">Getting Started</a>
+            <a href="#panic-mode" class="sidenav__link">Panic Mode</a>
             <a href="#faq" class="sidenav__link">FAQ</a>
             <a href="#announcements" class="sidenav__link">Announcements</a>
           </div>
@@ -298,6 +299,107 @@
             You can remove stry at any time under <strong>Server Settings → Members</strong>. Removing the bot
             ends its access to your server; the handling of stored data is described in the
             <a href="#privacy">Privacy Policy</a>.
+          </p>
+        </section>
+
+        <!-- ======== PANIC MODE ======== -->
+        <section class="doc" id="panic-mode" data-section>
+          <span class="doc__overline">Features</span>
+          <h2 class="doc__title">Panic mode</h2>
+          <p class="doc__lead">
+            When an administrator account is compromised or turns, Stry strips its access,
+            restores what was destroyed from the latest backup, and opens a case — in seconds.
+            The timeline below shows one response, condensed.
+          </p>
+
+          <div class="incident reveal" id="incident">
+            <div class="incident__head">
+              <strong>Panic mode</strong>
+              <span class="incident__scenario">Whitelisted administrator</span>
+              <span class="incident__badge" style="--d:1700ms"><i aria-hidden="true"></i>Contained in 6s</span>
+            </div>
+
+            <div class="incident__body">
+              <aside class="incident__who">
+                <span class="incident__label">Who</span>
+                <div class="incident__actor">
+                  <img src="https://cdn.discordapp.com/embed/avatars/5.png" alt="" width="34" height="34" loading="lazy" />
+                  <div>
+                    <strong>vex</strong>
+                    <span>Administrator · 19 days</span>
+                  </div>
+                </div>
+                <span class="incident__label">What let it happen</span>
+                <div class="incident__chips">
+                  <span>Administrator</span>
+                  <span>Manage Channels</span>
+                  <span>Manage Roles</span>
+                  <span>Ban Members</span>
+                </div>
+              </aside>
+
+              <div class="incident__log">
+                <div class="inc-row inc-row--attacker" style="--d:0ms">
+                  <code>02:14:01</code><i aria-hidden="true"></i><strong>vex</strong>
+                  <span>Deleted <em>#announcements</em></span>
+                </div>
+                <div class="inc-row inc-row--attacker" style="--d:150ms">
+                  <code>02:14:02</code><i aria-hidden="true"></i><strong>vex</strong>
+                  <span>Deleted <em>#rules</em></span>
+                </div>
+                <div class="inc-row inc-row--attacker" style="--d:300ms">
+                  <code>02:14:03</code><i aria-hidden="true"></i><strong>vex</strong>
+                  <span>Deleted <em>#welcome</em></span>
+                </div>
+                <div class="inc-row inc-row--attacker" style="--d:450ms">
+                  <code>02:14:04</code><i aria-hidden="true"></i><strong>vex</strong>
+                  <span>Kicked 14 members</span>
+                </div>
+                <div class="inc-row inc-row--attacker" style="--d:600ms">
+                  <code>02:14:05</code><i aria-hidden="true"></i><strong>vex</strong>
+                  <span>Deleted <em>@Moderator</em>, <em>@Trial Mod</em>, <em>@Events</em></span>
+                </div>
+
+                <div class="inc-divider" style="--d:800ms"><span>Stry</span></div>
+
+                <div class="inc-row inc-row--stry" style="--d:950ms">
+                  <code>02:14:06</code><i aria-hidden="true"></i><img class="inc-avatar" src="assets/logo.png" alt="" width="20" height="20" loading="lazy" />
+                  <span>Twenty-two destructive actions in five seconds. Threshold crossed.</span>
+                </div>
+                <div class="inc-row inc-row--stry" style="--d:1100ms">
+                  <code>02:14:06</code><i aria-hidden="true"></i><img class="inc-avatar" src="assets/logo.png" alt="" width="20" height="20" loading="lazy" />
+                  <span>Every role stripped from the account</span>
+                </div>
+                <div class="inc-row inc-row--stry" style="--d:1250ms">
+                  <code>02:14:07</code><i aria-hidden="true"></i><img class="inc-avatar" src="assets/logo.png" alt="" width="20" height="20" loading="lazy" />
+                  <span>Account removed from the server</span>
+                </div>
+                <div class="inc-row inc-row--stry" style="--d:1400ms">
+                  <code>02:14:07</code><i aria-hidden="true"></i><img class="inc-avatar" src="assets/logo.png" alt="" width="20" height="20" loading="lazy" />
+                  <span>Channels and roles restored from the 02:11 backup</span>
+                </div>
+                <div class="inc-row inc-row--stry" style="--d:1550ms">
+                  <code>02:14:08</code><i aria-hidden="true"></i><img class="inc-avatar" src="assets/logo.png" alt="" width="20" height="20" loading="lazy" />
+                  <span>Case 0417 opened</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="incident__foot" style="--d:1750ms">
+              Channels, roles and overwrites came back from the 02:11 snapshot. The attacker account is left with nothing.
+            </div>
+          </div>
+
+          <h3>Built on automatic backups</h3>
+          <p>
+            Restoration never depends on the attacker's cooperation. Stry captures raid-safe
+            snapshots of your server's channels and roles on a rolling schedule, so a compromised
+            account cannot destroy the server faster than Stry can restore it. Every response is
+            recorded as a numbered case your staff can review later.
+          </p>
+          <p>
+            Questions about panic mode or whitelist behavior? Ask in the
+            <a href="https://discord.gg/E56wBApKB" target="_blank" rel="noopener">support server</a>.
           </p>
         </section>
 
@@ -484,6 +586,7 @@
           <span class="footer__label">Documentation</span>
           <a href="#introduction">Introduction</a>
           <a href="#getting-started">Getting Started</a>
+          <a href="#panic-mode">Panic Mode</a>
           <a href="#faq">FAQ</a>
           <a href="#announcements">Announcements</a>
         </div>
